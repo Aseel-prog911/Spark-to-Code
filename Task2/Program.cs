@@ -165,6 +165,42 @@
             }
 
             Console.WriteLine("Sum of even numbers = " + sum);
+            //////////////////////////////////////////////////////
+            //Task 9 - Validated Positive Number Input
+            int number = 0;
+            bool validInput = false;
+
+            do
+            {
+                try
+                {
+                    Console.Write("Enter a positive whole number: ");
+                    number = Convert.ToInt32(Console.ReadLine());
+
+                    if (number > 0)
+                    {
+                        validInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a number greater than zero.");
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input. Please enter a whole number.");
+                }
+
+            } while (!validInput);
+
+            int sum = 0;
+
+            for (int i = 1; i <= number; i++)
+            {
+                sum += i;
+            }
+
+            Console.WriteLine("Sum = " + sum);
         }
     }
 }
