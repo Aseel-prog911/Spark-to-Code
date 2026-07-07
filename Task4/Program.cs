@@ -280,6 +280,52 @@
                 }
 
             } while (option != 5);
+            ///////////////////////////////////////////
+            //Task 12 - Student Report Card Generator
+            double CalculateAverage(double mark1, double mark2, double mark3)
+            {
+                return (mark1 + mark2 + mark3) / 3;
+            }
+
+            string GetGradeLetter(double average)
+            {
+                if (average >= 90)
+                    return "A";
+                else if (average >= 80)
+                    return "B";
+                else if (average >= 70)
+                    return "C";
+                else if (average >= 60)
+                    return "D";
+                else
+                    return "F";
+            }
+
+            void PrintReportCard(string name, double average, string grade)
+            {
+                Console.WriteLine();
+                Console.WriteLine("----- Student Report Card -----");
+                Console.WriteLine("Name: " + name);
+                Console.WriteLine("Average: " + average);
+                Console.WriteLine("Grade: " + grade);
+            }
+
+            Console.Write("Enter student name: ");
+            string name = Console.ReadLine();
+
+            Console.Write("Enter mark 1: ");
+            double mark1 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter mark 2: ");
+            double mark2 = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter mark 3: ");
+            double mark3 = Convert.ToDouble(Console.ReadLine());
+
+            double average = CalculateAverage(mark1, mark2, mark3);
+            string grade = GetGradeLetter(average);
+
+            PrintReportCard(name, average, grade);
         }
     }
 }
