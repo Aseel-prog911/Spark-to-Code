@@ -155,6 +155,57 @@
                 Console.WriteLine("First Position = " + firstPosition);
                 Console.WriteLine("Last Position = " + lastPosition);
             }
+            ////////////////////////////////////////////
+            //Task 11 - One-Time Password (OTP) Generator
+            Random random = new Random();
+
+            int otp = random.Next(1000, 10000);
+
+            Console.WriteLine("Generated OTP = " + otp);
+
+            int attempts = 3;
+
+            while (attempts > 0)
+            {
+                Console.Write("Enter OTP: ");
+
+                try
+                {
+                    int userOtp = Convert.ToInt32(Console.ReadLine());
+
+                    if (userOtp == otp)
+                    {
+                        Console.WriteLine("Verified");
+                        break;
+                    }
+                    else
+                    {
+                        attempts--;
+
+                        if (attempts == 0)
+                        {
+                            Console.WriteLine("Verification Failed");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Incorrect OTP. Attempts left: " + attempts);
+                        }
+                    }
+                }
+                catch
+                {
+                    attempts--;
+
+                    if (attempts == 0)
+                    {
+                        Console.WriteLine("Verification Failed");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Attempts left: " + attempts);
+                    }
+                }
+            }
         }
     }
 }
