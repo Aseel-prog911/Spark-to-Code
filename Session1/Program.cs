@@ -240,7 +240,38 @@
                     break;
             }
             ///////////////////////////////////////////////////
-            //
+            //Task11  Loan Eligibility System
+            Console.Write("Enter your age: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter your monthly income: ");
+            double income = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Do you have an existing loan? (yes/no): ");
+            string answer = Console.ReadLine();
+
+            bool hasLoan = answer.ToLower() == "yes";
+
+            if (age >= 21 && age <= 60 && income >= 400 && !hasLoan)
+            {
+                Console.WriteLine("Eligible for the loan");
+            }
+            else
+            {
+                if (age < 21 || age > 60)
+                {
+                    Console.WriteLine("Reason: Age out of range");
+                }
+                else if (income < 400)
+                {
+                    Console.WriteLine("Reason: Income too low");
+                }
+                else if (hasLoan)
+                {
+                    Console.WriteLine("Reason: Has an existing loan");
+                }
+            }
+
         }
     }
 }
