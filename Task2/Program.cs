@@ -149,6 +149,22 @@
                     Console.WriteLine("Please enter a valid number.");
                 }
             }
+            //////////////////////////////////////////////
+            //Task 8 - Sum of Even Numbers Only
+            Console.Write("Enter a positive number: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            int sum = 0;
+
+            for (int i = 1; i <= n; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    sum += i;
+                }
+            }
+
+            Console.WriteLine("Sum of even numbers = " + sum);
         }
     }
 }
