@@ -204,6 +204,82 @@
             {
                 Console.WriteLine("Invalid choice.");
             }
+            ////////////////////////////////////////////
+            //Task 11 - Function-Based Calculator
+            double Add(double a, double b)
+            {
+                return a + b;
+            }
+
+            double Subtract(double a, double b)
+            {
+                return a - b;
+            }
+
+            double MultiplyNumbers(double a, double b)
+            {
+                return a * b;
+            }
+
+            double DivideNumbers(double a, double b)
+            {
+                try
+                {
+                    return a / b;
+                }
+                catch (DivideByZeroException)
+                {
+                    return 0;
+                }
+            }
+
+            void DisplayResult(string operation, double result)
+            {
+                Console.WriteLine(operation + " = " + result);
+            }
+
+            int option;
+
+            do
+            {
+                Console.WriteLine("1. Add");
+                Console.WriteLine("2. Subtract");
+                Console.WriteLine("3. Multiply");
+                Console.WriteLine("4. Divide");
+                Console.WriteLine("5. Exit");
+
+                Console.Write("Choose: ");
+                option = Convert.ToInt32(Console.ReadLine());
+
+                if (option >= 1 && option <= 4)
+                {
+                    Console.Write("Enter first number: ");
+                    double num1 = Convert.ToDouble(Console.ReadLine());
+
+                    Console.Write("Enter second number: ");
+                    double num2 = Convert.ToDouble(Console.ReadLine());
+
+                    switch (option)
+                    {
+                        case 1:
+                            DisplayResult("Addition", Add(num1, num2));
+                            break;
+
+                        case 2:
+                            DisplayResult("Subtraction", Subtract(num1, num2));
+                            break;
+
+                        case 3:
+                            DisplayResult("Multiplication", MultiplyNumbers(num1, num2));
+                            break;
+
+                        case 4:
+                            DisplayResult("Division", DivideNumbers(num1, num2));
+                            break;
+                    }
+                }
+
+            } while (option != 5);
         }
     }
 }
