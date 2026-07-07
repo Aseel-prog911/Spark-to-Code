@@ -84,6 +84,25 @@
                     Console.WriteLine("Reason: Password cannot contain the word 'password'.");
                 }
             }
+            ///////////////////////////////////////////////////
+            //Task 7 - Clean Name Comparator
+            Console.Write("Enter first name: ");
+            string name1 = Console.ReadLine();
+
+            Console.Write("Enter second name: ");
+            string name2 = Console.ReadLine();
+
+            name1 = name1.Trim().ToLower();
+            name2 = name2.Trim().ToLower();
+
+            if (name1 == name2)
+            {
+                Console.WriteLine("Match");
+            }
+            else
+            {
+                Console.WriteLine("No Match");
+            }
         }
     }
 }
