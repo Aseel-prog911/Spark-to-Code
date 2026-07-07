@@ -122,6 +122,49 @@
             int start = Convert.ToInt32(Console.ReadLine());
 
             Countdown(start);
+            //////////////////////////////////////
+            //Task 9 - Overloaded Multiply Function
+            int Multiply(int a, int b)
+            {
+                return a * b;
+            }
+
+            double Multiply(double a, double b)
+            {
+                return a * b;
+            }
+
+            int Multiply(int a, int b, int c)
+            {
+                return a * b * c;
+            }
+
+            Console.WriteLine("Multiply(int, int)");
+            Console.Write("Enter first integer: ");
+            int num1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter second integer: ");
+            int num2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Result = " + Multiply(num1, num2));
+
+            Console.WriteLine();
+
+            Console.WriteLine("Multiply(double, double)");
+            Console.Write("Enter first decimal: ");
+            double d1 = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Enter second decimal: ");
+            double d2 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Result = " + Multiply(d1, d2));
+
+            Console.WriteLine();
+
+            Console.WriteLine("Multiply(int, int, int)");
+            Console.Write("Enter first integer: ");
+            int n1 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter second integer: ");
+            int n2 = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter third integer: ");
+            int n3 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Result = " + Multiply(n1, n2, n3));
         }
     }
 }
