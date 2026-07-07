@@ -40,6 +40,16 @@
             double fahrenheit = CelsiusToFahrenheit(celsius);
 
             Console.WriteLine("Fahrenheit = " + fahrenheit);
+            //////////////////////////////////////////
+            //Task 4 - Fixed Menu Display Function
+            void DisplayMenu()
+            {
+                Console.WriteLine("1. Start");
+                Console.WriteLine("2. Help");
+                Console.WriteLine("3. Exit");
+            }
+
+            DisplayMenu();
         }
     }
 }
