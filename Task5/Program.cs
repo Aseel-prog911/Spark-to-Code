@@ -164,6 +164,55 @@
             {
                 Console.WriteLine(action);
             }
+            //////////////////////////////////////
+            //Task 9 - Grade Analyzer with Functions
+            double CalculateAverage(List<int> grades)
+            {
+                int sum = 0;
+
+                foreach (int grade in grades)
+                {
+                    sum += grade;
+                }
+
+                return (double)sum / grades.Count;
+            }
+
+            int FindFirstFailing(List<int> grades)
+            {
+                foreach (int grade in grades)
+                {
+                    if (grade < 60)
+                        return grade;
+                }
+
+                return 0;
+            }
+
+            List<int> grades = new List<int>();
+
+            Console.Write("How many grades? ");
+            int count = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < count; i++)
+            {
+                Console.Write("Enter grade " + (i + 1) + ": ");
+                grades.Add(Convert.ToInt32(Console.ReadLine()));
+            }
+
+            double average = CalculateAverage(grades);
+            int failingGrade = FindFirstFailing(grades);
+
+            Console.WriteLine("Average = " + average);
+
+            if (failingGrade == 0)
+            {
+                Console.WriteLine("No failing grades.");
+            }
+            else
+            {
+                Console.WriteLine("First failing grade = " + failingGrade);
+            }
         }
     }
 }
