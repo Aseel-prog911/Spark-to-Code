@@ -14,8 +14,6 @@
             Console.WriteLine("Age: " + age);
             Console.WriteLine("Height: " + height);
             Console.WriteLine("Student: " + isStudent);
-
-
             ///////////////////////////////////////////////
             //Task2  Rectangle Calculator
             Console.Write("Enter the length: ");
@@ -29,6 +27,19 @@
 
             Console.WriteLine("Area = " + area);
             Console.WriteLine("Perimeter = " + perimeter);
+            //////////////////////////////////////////////////////
+            //Task3 Even or Odd Checker
+            Console.Write("Enter a whole number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            if (number % 2 == 0)
+            {
+                Console.WriteLine("The number is Even.");
+            }
+            else
+            {
+                Console.WriteLine("The number is Odd.");
+            }
 
         }
     }
