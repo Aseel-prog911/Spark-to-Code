@@ -165,6 +165,45 @@
             Console.Write("Enter third integer: ");
             int n3 = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Result = " + Multiply(n1, n2, n3));
+            //////////////////////////////////////////////
+            //Task 10 - Overloaded Area Calculator
+            double CalculateArea(double side)
+            {
+                return side * side;
+            }
+
+            double CalculateArea(double length, double width)
+            {
+                return length * width;
+            }
+
+            Console.WriteLine("Choose shape:");
+            Console.WriteLine("1. Square");
+            Console.WriteLine("2. Rectangle");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            if (choice == 1)
+            {
+                Console.Write("Enter side: ");
+                double side = Convert.ToDouble(Console.ReadLine());
+
+                Console.WriteLine("Area = " + CalculateArea(side));
+            }
+            else if (choice == 2)
+            {
+                Console.Write("Enter length: ");
+                double length = Convert.ToDouble(Console.ReadLine());
+
+                Console.Write("Enter width: ");
+                double width = Convert.ToDouble(Console.ReadLine());
+
+                Console.WriteLine("Area = " + CalculateArea(length, width));
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice.");
+            }
         }
     }
 }
