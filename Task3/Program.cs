@@ -41,6 +41,23 @@
             DateTime endDate = today.AddDays(days);
 
             Console.WriteLine("End Date = " + endDate.ToString("yyyy-MM-dd"));
+            //////////////////////////////////////////
+            //Task 5 - Grade Rounding System
+            Console.Write("Enter your exam score: ");
+            double score = Convert.ToDouble(Console.ReadLine());
+
+            double roundedScore = Math.Round(score);
+
+            Console.WriteLine("Rounded Score = " + roundedScore);
+
+            if (roundedScore >= 60)
+            {
+                Console.WriteLine("Result = Pass");
+            }
+            else
+            {
+                Console.WriteLine("Result = Fail");
+            }
         }
     }
 }
