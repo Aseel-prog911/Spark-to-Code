@@ -50,6 +50,24 @@
             }
 
             DisplayMenu();
+            ////////////////////////////////////
+            //Task 5 - Even or Odd Function
+            bool IsEven(int number)
+            {
+                return number % 2 == 0;
+            }
+
+            Console.Write("Enter a number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            if (IsEven(number))
+            {
+                Console.WriteLine("Even");
+            }
+            else
+            {
+                Console.WriteLine("Odd");
+            }
         }
     }
 }
