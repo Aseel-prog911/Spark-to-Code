@@ -68,6 +68,26 @@
             {
                 Console.WriteLine("Odd");
             }
+            //////////////////////////////////////
+            //Task 6 - Rectangle Area & Perimeter Functions
+            double CalculateArea(double length, double width)
+            {
+                return length * width;
+            }
+
+            double CalculatePerimeter(double length, double width)
+            {
+                return 2 * (length + width);
+            }
+
+            Console.Write("Enter length: ");
+            double length = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter width: ");
+            double width = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("Area = " + CalculateArea(length, width));
+            Console.WriteLine("Perimeter = " + CalculatePerimeter(length, width));
         }
     }
 }
