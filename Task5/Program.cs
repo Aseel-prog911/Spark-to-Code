@@ -91,6 +91,39 @@
             Console.WriteLine("Lowest Grade = " + grades[0]);
             Console.WriteLine("Highest Grade = " + grades[grades.Length - 1]);
             Console.WriteLine("Average = " + average);
+            //////////////////////////////////////////
+            //Task 6 - Filtered Shopping List
+            List<string> shoppingList = new List<string>();
+
+            while (true)
+            {
+                Console.Write("Enter item (type 'done' to finish): ");
+                string item = Console.ReadLine();
+
+                if (item.ToLower() == "done")
+                    break;
+
+                shoppingList.Add(item);
+            }
+
+            Console.WriteLine("Shopping List:");
+
+            foreach (string item in shoppingList)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.Write("Enter item to remove: ");
+            string removeItem = Console.ReadLine();
+
+            shoppingList.Remove(removeItem);
+
+            Console.WriteLine("Updated Shopping List:");
+
+            foreach (string item in shoppingList)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
