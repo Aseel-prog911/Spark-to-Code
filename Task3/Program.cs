@@ -135,6 +135,26 @@
             Console.WriteLine("Nearest Whole Number = " + nearest);
             Console.WriteLine("Rounded Up = " + roundUp);
             Console.WriteLine("Rounded Down = " + roundDown);
+            //////////////////////////////////////////////
+            //Task 10 - Word Position Finder
+            Console.Write("Enter a sentence: ");
+            string sentence = Console.ReadLine();
+
+            Console.Write("Enter a word to search: ");
+            string word = Console.ReadLine();
+
+            int firstPosition = sentence.IndexOf(word, StringComparison.OrdinalIgnoreCase);
+            int lastPosition = sentence.LastIndexOf(word, StringComparison.OrdinalIgnoreCase);
+
+            if (firstPosition == -1)
+            {
+                Console.WriteLine("Word not found.");
+            }
+            else
+            {
+                Console.WriteLine("First Position = " + firstPosition);
+                Console.WriteLine("Last Position = " + lastPosition);
+            }
         }
     }
 }
