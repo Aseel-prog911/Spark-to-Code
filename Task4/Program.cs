@@ -108,6 +108,20 @@
             int score = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("Grade = " + GetGradeLetter(score));
+            //////////////////////////////////////////
+            //Task 8 - Countdown Function
+            void Countdown(int start)
+            {
+                for (int i = start; i >= 1; i--)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+
+            Console.Write("Enter starting number: ");
+            int start = Convert.ToInt32(Console.ReadLine());
+
+            Countdown(start);
         }
     }
 }
