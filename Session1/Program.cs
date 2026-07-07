@@ -112,6 +112,30 @@
                 Console.WriteLine("Weather: Hot");
             }
             /////////////////////////////////////////////////
+            //Task7 Movie Ticket Pricing
+            Console.Write("Enter your age: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            double price;
+
+            if (age <= 12)
+            {
+                price = 2.000;
+                Console.WriteLine("Category: Children");
+            }
+            else if (age <= 59)
+            {
+                price = 5.000;
+                Console.WriteLine("Category: Adults");
+            }
+            else
+            {
+                price = 3.000;
+                Console.WriteLine("Category: Seniors");
+            }
+
+            Console.WriteLine("Final Price: " + price + " OMR");
+            //////////////////////////////////////////////
         }
     }
 }
