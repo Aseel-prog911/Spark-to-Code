@@ -39,6 +39,25 @@
             else
             {
                 Console.WriteLine("The number is Odd.");
+                //////////////////////////////////////////////////
+                //Task4  Voting Eligibility
+                Console.Write("Enter your age: ");
+                int age = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Do you have a valid national ID? (yes/no): ");
+                string answer = Console.ReadLine();
+
+                bool hasID = answer.ToLower() == "yes";
+
+                if (age >= 18 && hasID)
+                {
+                    Console.WriteLine("You are eligible to vote.");
+                }
+                else
+                {
+                    Console.WriteLine("You are not eligible to vote.");
+                }
+
             }
 
         }
