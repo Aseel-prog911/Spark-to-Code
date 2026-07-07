@@ -201,6 +201,113 @@
             }
 
             Console.WriteLine("Sum = " + sum);
+            ////////////////////////////////////////////
+            //Task 10 - Simple ATM Simulation
+            int pin = 1234;
+            double balance = 100.000;
+
+            bool loggedIn = false;
+            int attempts = 0;
+
+            while (attempts < 3 && !loggedIn)
+            {
+                try
+                {
+                    Console.Write("Enter PIN: ");
+                    int enteredPin = Convert.ToInt32(Console.ReadLine());
+
+                    if (enteredPin == pin)
+                    {
+                        loggedIn = true;
+                    }
+                    else
+                    {
+                        attempts++;
+                        Console.WriteLine("Incorrect PIN");
+                    }
+                }
+                catch
+                {
+                    attempts++;
+                    Console.WriteLine("Invalid PIN");
+                }
+            }
+
+            if (!loggedIn)
+            {
+                Console.WriteLine("Card Blocked");
+                return;
+            }
+
+            int choice = 0;
+
+            while (choice != 4)
+            {
+                Console.WriteLine("\nATM Menu");
+                Console.WriteLine("1. Deposit");
+                Console.WriteLine("2. Withdraw");
+                Console.WriteLine("3. Check Balance");
+                Console.WriteLine("4. Exit");
+
+                try
+                {
+                    Console.Write("Choose: ");
+                    choice = Convert.ToInt32(Console.ReadLine());
+
+                    switch (choice)
+                    {
+                        case 1:
+                            Console.Write("Deposit amount: ");
+                            double deposit = Convert.ToDouble(Console.ReadLine());
+
+                            if (deposit >= 0)
+                            {
+                                balance += deposit;
+                                Console.WriteLine("Balance = " + balance);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Amount cannot be negative.");
+                            }
+                            break;
+
+                        case 2:
+                            Console.Write("Withdraw amount: ");
+                            double withdraw = Convert.ToDouble(Console.ReadLine());
+
+                            if (withdraw < 0)
+                            {
+                                Console.WriteLine("Amount cannot be negative.");
+                            }
+                            else if (withdraw > balance)
+                            {
+                                Console.WriteLine("Insufficient balance.");
+                            }
+                            else
+                            {
+                                balance -= withdraw;
+                                Console.WriteLine("Balance = " + balance);
+                            }
+                            break;
+
+                        case 3:
+                            Console.WriteLine("Current Balance = " + balance);
+                            break;
+
+                        case 4:
+                            Console.WriteLine("Thank you!");
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid option.");
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+            }
         }
     }
 }
