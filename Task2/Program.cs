@@ -36,6 +36,22 @@
             {
                 Console.WriteLine(number + " x " + i + " = " + (number * i));
             }
+            /////////////////////////////////////////////////
+            //Task4 Password Retry
+            string password = "";
+
+            while (password != "Spark2026")
+            {
+                Console.Write("Enter password: ");
+                password = Console.ReadLine();
+
+                if (password != "Spark2026")
+                {
+                    Console.WriteLine("Incorrect password, try again");
+                }
+            }
+
+            Console.WriteLine("Access Granted");
         }
     }
 }
