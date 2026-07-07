@@ -213,6 +213,56 @@
             {
                 Console.WriteLine("First failing grade = " + failingGrade);
             }
+            ////////////////////////////////////////////////////////
+            //Task 10 - Print Queue Manager
+            Queue<string> jobs = new Queue<string>();
+
+            while (true)
+            {
+                Console.Write("Enter print job (type 'done' to finish): ");
+                string job = Console.ReadLine();
+
+                if (job.ToLower() == "done")
+                    break;
+
+                jobs.Enqueue(job);
+            }
+
+            Console.WriteLine("Current Queue:");
+
+            foreach (string job in jobs)
+            {
+                Console.WriteLine(job);
+            }
+
+            Console.Write("Enter job to cancel: ");
+            string removeJob = Console.ReadLine();
+
+            Queue<string> RemoveJob(Queue<string> queue, string jobToRemove)
+            {
+                Queue<string> newQueue = new Queue<string>();
+
+                while (queue.Count > 0)
+                {
+                    string job = queue.Dequeue();
+
+                    if (job != jobToRemove)
+                    {
+                        newQueue.Enqueue(job);
+                    }
+                }
+
+                return newQueue;
+            }
+
+            jobs = RemoveJob(jobs, removeJob);
+
+            Console.WriteLine("Updated Queue:");
+
+            foreach (string job in jobs)
+            {
+                Console.WriteLine(job);
+            }
         }
     }
 }
