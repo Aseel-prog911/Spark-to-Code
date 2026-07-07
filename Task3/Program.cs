@@ -123,6 +123,18 @@
             {
                 Console.WriteLine("Membership Status = Expired");
             }
+            //////////////////////////////////////////////
+            //Task 9 - Round Up / Round Down Explorer
+            Console.Write("Enter a number: ");
+            double number = Convert.ToDouble(Console.ReadLine());
+
+            double nearest = Math.Round(number);
+            double roundUp = Math.Ceiling(number);
+            double roundDown = Math.Floor(number);
+
+            Console.WriteLine("Nearest Whole Number = " + nearest);
+            Console.WriteLine("Rounded Up = " + roundUp);
+            Console.WriteLine("Rounded Down = " + roundDown);
         }
     }
 }
