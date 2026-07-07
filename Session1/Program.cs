@@ -136,6 +136,28 @@
 
             Console.WriteLine("Final Price: " + price + " OMR");
             //////////////////////////////////////////////
+            //Task8 Restaurant Bill with Membership Discount
+            Console.Write("Enter total bill: ");
+            double bill = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Are you a member? (yes/no): ");
+            string answer = Console.ReadLine();
+
+            bool isMember = answer.ToLower() == "yes";
+
+            double discount = 0;
+
+            if (bill > 20 && isMember)
+            {
+                discount = bill * 0.15;
+            }
+
+            double finalAmount = bill - discount;
+
+            Console.WriteLine("Original Bill: " + bill + " OMR");
+            Console.WriteLine("Discount: " + discount + " OMR");
+            Console.WriteLine("Final Amount: " + finalAmount + " OMR");
+            //////////////////////////////////////////////////////////
         }
     }
 }
