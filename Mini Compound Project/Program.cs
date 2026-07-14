@@ -70,6 +70,10 @@ namespace Mini_Compound_Project
                         ShowBalance();
                         break;
 
+                    case 5:
+                        TransferAmount();
+                        break;
+
                     case 8:
                         exitApp = true;
                         Console.WriteLine("Thank you for using Spark Bank.");
@@ -352,6 +356,94 @@ namespace Mini_Compound_Project
 
             // Pause before returning to the menu
             Console.WriteLine("Press Enter to return to the menu.");
+            Console.ReadLine();
+        }
+        // ======================================
+        // Service 5: Transfer Amount
+        // ======================================
+        static void TransferAmount()
+        {
+            // Clear the screen and display the service title
+            Console.Clear();
+            Console.WriteLine("==================================");
+            Console.WriteLine("         Transfer Amount");
+            Console.WriteLine("==================================");
+
+            // Ask for sender account number
+            Console.Write("Enter sender account number: ");
+            string senderAccount = Console.ReadLine();
+
+            int senderIndex = accountNumbers.IndexOf(senderAccount);
+
+            if (senderIndex == -1)
+            {
+                Console.WriteLine("Sender account not found.");
+                Console.WriteLine("Press Enter to return.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Ask for receiver account number
+            Console.Write("Enter receiver account number: ");
+            string receiverAccount = Console.ReadLine();
+
+            int receiverIndex = accountNumbers.IndexOf(receiverAccount);
+
+            if (receiverIndex == -1)
+            {
+                Console.WriteLine("Receiver account not found.");
+                Console.WriteLine("Press Enter to return.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Prevent transferring to the same account
+            if (senderIndex == receiverIndex)
+            {
+                Console.WriteLine("Sender and receiver cannot be the same account.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Ask for transfer amount
+            Console.Write("Enter transfer amount: OMR ");
+
+            double amount;
+
+            if (!double.TryParse(Console.ReadLine(), out amount))
+            {
+                Console.WriteLine("Invalid amount.");
+                Console.ReadLine();
+                return;
+            }
+
+            if (amount <= 0)
+            {
+                Console.WriteLine("Amount must be greater than zero.");
+                Console.ReadLine();
+                return;
+            }
+
+            if (amount > balances[senderIndex])
+            {
+                Console.WriteLine("Insufficient balance.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Transfer the money
+            balances[senderIndex] -= amount;
+            balances[receiverIndex] += amount;
+
+            // Display the transfer result
+            Console.WriteLine();
+            Console.WriteLine("Transfer completed successfully.");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Sender Balance   : OMR {balances[senderIndex]:F3}");
+            Console.WriteLine($"Receiver Balance : OMR {balances[receiverIndex]:F3}");
+            Console.WriteLine("----------------------------------");
+
+            Console.WriteLine("Press Enter to return.");
             Console.ReadLine();
         }
     }
