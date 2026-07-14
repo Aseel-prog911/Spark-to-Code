@@ -57,6 +57,11 @@ namespace Mini_Compound_Project
                     case 1:
                         AddAccount();
                         break;
+
+                    case 2:
+                        DepositMoney();
+                        break;
+
                     case 8:
                         exitApp = true;
                         Console.WriteLine("Thank you for using Spark Bank.");
@@ -157,6 +162,72 @@ namespace Mini_Compound_Project
             Console.WriteLine("Press Enter to return to the menu.");
             Console.ReadLine();
         }
+        // ======================================
+        // Service 2: Deposit Money
+        // ======================================
+        static void DepositMoney()
+        {
+            // Clear the screen and display the service title
+            Console.Clear();
+            Console.WriteLine("==================================");
+            Console.WriteLine("          Deposit Money");
+            Console.WriteLine("==================================");
 
+            // Ask the user to enter the account number
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine();
+
+            // Find the account position in the account numbers list
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            // Check whether the account exists
+            if (accountIndex == -1)
+            {
+                Console.WriteLine("Account number was not found.");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Ask the user to enter the deposit amount
+            Console.Write("Enter deposit amount: OMR ");
+
+            double depositAmount;
+
+            // Validate that the deposit amount is a number
+            if (!double.TryParse(Console.ReadLine(), out depositAmount))
+            {
+                Console.WriteLine("Invalid amount. Please enter numbers only.");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Deposit amount must be greater than zero
+            if (depositAmount <= 0)
+            {
+                Console.WriteLine("Deposit amount must be greater than zero.");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Add the deposit amount to the existing balance
+            balances[accountIndex] = balances[accountIndex] + depositAmount;
+
+            // Display the updated account balance
+            Console.WriteLine();
+            Console.WriteLine("Deposit completed successfully.");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Customer Name : {customerNames[accountIndex]}");
+            Console.WriteLine($"Account Number: {accountNumbers[accountIndex]}");
+            Console.WriteLine($"Deposited     : OMR {depositAmount:F3}");
+            Console.WriteLine($"New Balance   : OMR {balances[accountIndex]:F3}");
+            Console.WriteLine("----------------------------------");
+
+            // Pause before returning to the main menu
+            Console.WriteLine("Press Enter to return to the menu.");
+            Console.ReadLine();
+        }
     }
 }
