@@ -62,6 +62,10 @@ namespace Mini_Compound_Project
                         DepositMoney();
                         break;
 
+                    case 3:
+                        WithdrawMoney();
+                        break;
+
                     case 8:
                         exitApp = true;
                         Console.WriteLine("Thank you for using Spark Bank.");
@@ -222,6 +226,84 @@ namespace Mini_Compound_Project
             Console.WriteLine($"Customer Name : {customerNames[accountIndex]}");
             Console.WriteLine($"Account Number: {accountNumbers[accountIndex]}");
             Console.WriteLine($"Deposited     : OMR {depositAmount:F3}");
+            Console.WriteLine($"New Balance   : OMR {balances[accountIndex]:F3}");
+            Console.WriteLine("----------------------------------");
+
+            // Pause before returning to the main menu
+            Console.WriteLine("Press Enter to return to the menu.");
+            Console.ReadLine();
+        }
+        // ======================================
+        // Service 3: Withdraw Money
+        // ======================================
+        static void WithdrawMoney()
+        {
+            // Clear the screen and display the service title
+            Console.Clear();
+            Console.WriteLine("==================================");
+            Console.WriteLine("         Withdraw Money");
+            Console.WriteLine("==================================");
+
+            // Ask the user to enter the account number
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine();
+
+            // Find the account position
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            // Check whether the account exists
+            if (accountIndex == -1)
+            {
+                Console.WriteLine("Account number was not found.");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Ask the user to enter the withdrawal amount
+            Console.Write("Enter withdrawal amount: OMR ");
+
+            double withdrawalAmount;
+
+            // Validate that the amount is a number
+            if (!double.TryParse(Console.ReadLine(), out withdrawalAmount))
+            {
+                Console.WriteLine("Invalid amount. Please enter numbers only.");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Withdrawal amount must be greater than zero
+            if (withdrawalAmount <= 0)
+            {
+                Console.WriteLine("Withdrawal amount must be greater than zero.");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Check whether the account has enough balance
+            if (withdrawalAmount > balances[accountIndex])
+            {
+                Console.WriteLine("Insufficient balance.");
+                Console.WriteLine($"Current Balance: OMR {balances[accountIndex]:F3}");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Subtract the withdrawal amount from the balance
+            balances[accountIndex] =
+                balances[accountIndex] - withdrawalAmount;
+
+            // Display the updated account balance
+            Console.WriteLine();
+            Console.WriteLine("Withdrawal completed successfully.");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Customer Name : {customerNames[accountIndex]}");
+            Console.WriteLine($"Account Number: {accountNumbers[accountIndex]}");
+            Console.WriteLine($"Withdrawn     : OMR {withdrawalAmount:F3}");
             Console.WriteLine($"New Balance   : OMR {balances[accountIndex]:F3}");
             Console.WriteLine("----------------------------------");
 
