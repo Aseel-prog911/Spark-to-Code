@@ -74,6 +74,10 @@ namespace Mini_Compound_Project
                         TransferAmount();
                         break;
 
+                    case 6:
+                        ShowAllAccounts();
+                        break;
+
                     case 8:
                         exitApp = true;
                         Console.WriteLine("Thank you for using Spark Bank.");
@@ -443,6 +447,43 @@ namespace Mini_Compound_Project
             Console.WriteLine($"Receiver Balance : OMR {balances[receiverIndex]:F3}");
             Console.WriteLine("----------------------------------");
 
+            Console.WriteLine("Press Enter to return.");
+            Console.ReadLine();
+        }
+        // ======================================
+        // Custom Service 1: Show All Accounts
+        // ======================================
+        static void ShowAllAccounts()
+        {
+            // Clear the console screen
+            Console.Clear();
+
+            Console.WriteLine("==================================");
+            Console.WriteLine("         All Accounts");
+            Console.WriteLine("==================================");
+
+            // Check whether there are any accounts
+            if (accountNumbers.Count == 0)
+            {
+                Console.WriteLine("There are no accounts in the system.");
+                Console.WriteLine("Press Enter to return.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Display all accounts
+            for (int i = 0; i < accountNumbers.Count; i++)
+            {
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine($"Customer Name : {customerNames[i]}");
+                Console.WriteLine($"Account Number: {accountNumbers[i]}");
+                Console.WriteLine($"Balance       : OMR {balances[i]:F3}");
+            }
+
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Total Accounts: {accountNumbers.Count}");
+
+            Console.WriteLine();
             Console.WriteLine("Press Enter to return.");
             Console.ReadLine();
         }
