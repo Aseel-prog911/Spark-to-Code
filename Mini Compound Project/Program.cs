@@ -66,6 +66,10 @@ namespace Mini_Compound_Project
                         WithdrawMoney();
                         break;
 
+                    case 4:
+                        ShowBalance();
+                        break;
+
                     case 8:
                         exitApp = true;
                         Console.WriteLine("Thank you for using Spark Bank.");
@@ -308,6 +312,45 @@ namespace Mini_Compound_Project
             Console.WriteLine("----------------------------------");
 
             // Pause before returning to the main menu
+            Console.WriteLine("Press Enter to return to the menu.");
+            Console.ReadLine();
+        }
+        // ======================================
+        // Service 4: Show Balance
+        // ======================================
+        static void ShowBalance()
+        {
+            // Clear the screen and display the service title
+            Console.Clear();
+            Console.WriteLine("==================================");
+            Console.WriteLine("          Show Balance");
+            Console.WriteLine("==================================");
+
+            // Ask the user to enter the account number
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine();
+
+            // Find the account position
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            // Check whether the account exists
+            if (accountIndex == -1)
+            {
+                Console.WriteLine("Account number was not found.");
+                Console.WriteLine("Press Enter to return to the menu.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Display the account details
+            Console.WriteLine();
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"Customer Name : {customerNames[accountIndex]}");
+            Console.WriteLine($"Account Number: {accountNumbers[accountIndex]}");
+            Console.WriteLine($"Current Balance: OMR {balances[accountIndex]:F3}");
+            Console.WriteLine("----------------------------------");
+
+            // Pause before returning to the menu
             Console.WriteLine("Press Enter to return to the menu.");
             Console.ReadLine();
         }
