@@ -78,6 +78,10 @@ namespace Mini_Compound_Project
                         ShowAllAccounts();
                         break;
 
+                    case 7:
+                        ApplyInterest();
+                        break;
+
                     case 8:
                         exitApp = true;
                         Console.WriteLine("Thank you for using Spark Bank.");
@@ -484,6 +488,70 @@ namespace Mini_Compound_Project
             Console.WriteLine($"Total Accounts: {accountNumbers.Count}");
 
             Console.WriteLine();
+            Console.WriteLine("Press Enter to return.");
+            Console.ReadLine();
+        }
+        // ======================================
+        // Custom Service 2: Apply Interest
+        // ======================================
+        static void ApplyInterest()
+        {
+            // Clear the console screen
+            Console.Clear();
+
+            Console.WriteLine("==================================");
+            Console.WriteLine("        Apply Interest");
+            Console.WriteLine("==================================");
+
+            // Check if there are any accounts
+            if (accountNumbers.Count == 0)
+            {
+                Console.WriteLine("There are no accounts in the system.");
+                Console.WriteLine("Press Enter to return.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Ask the user to enter the interest percentage
+            Console.Write("Enter interest percentage: ");
+
+            double interestRate;
+
+            if (!double.TryParse(Console.ReadLine(), out interestRate))
+            {
+                Console.WriteLine("Invalid percentage.");
+                Console.WriteLine("Press Enter to return.");
+                Console.ReadLine();
+                return;
+            }
+
+            if (interestRate <= 0)
+            {
+                Console.WriteLine("Interest percentage must be greater than zero.");
+                Console.WriteLine("Press Enter to return.");
+                Console.ReadLine();
+                return;
+            }
+
+            // Apply interest to every account
+            for (int i = 0; i < balances.Count; i++)
+            {
+                balances[i] += balances[i] * interestRate / 100;
+            }
+
+            // Display updated balances
+            Console.WriteLine();
+            Console.WriteLine("Interest applied successfully.");
+            Console.WriteLine("----------------------------------");
+
+            for (int i = 0; i < balances.Count; i++)
+            {
+                Console.WriteLine($"{customerNames[i]}");
+                Console.WriteLine($"Account Number: {accountNumbers[i]}");
+                Console.WriteLine($"New Balance   : OMR {balances[i]:F3}");
+                Console.WriteLine("----------------------------------");
+            }
+
             Console.WriteLine("Press Enter to return.");
             Console.ReadLine();
         }
