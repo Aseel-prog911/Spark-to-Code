@@ -118,4 +118,21 @@ namespace BankStudentManagement
             Console.WriteLine("[Transaction Logged]");
         }
     }
+
+    class Program
+    {
+        static BankAccount account1 = new BankAccount(1163, "karim", 120);
+        static BankAccount account2 = new BankAccount(15203, "Ali", 63);
+
+        static Student student1 = new Student("Ali", "Muscat", 65);
+        static Student student2 = new Student("Ahmed", "Muscat", 70);
+
+        static Product product1 = new Product("Wireless Mouse", 5.500, 50);
+        static Product product2 = new Product("Mechanical Keyboard", 15.750, 20);
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Objects created successfully.");
+        }
+    }
 }
