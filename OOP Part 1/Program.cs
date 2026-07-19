@@ -220,7 +220,15 @@ namespace BankStudentManagement
             acc.CheckBalance();
         }
 
-        static void Case2_UpdateStudentAddress() { }
+        static void Case2_UpdateStudentAddress()
+        {
+            Student s = ChooseStudent();
+            Console.Write("Enter new address: ");
+            string newAddress = Console.ReadLine();
+            s.Address = newAddress;
+            Console.WriteLine($"Address updated. New address for {s.Name}: {s.Address}");
+        }
+
         static void Case3_MakeDeposit() { }
         static void Case4_MakeWithdrawal() { }
         static void Case5_ViewProductDetails() { }
