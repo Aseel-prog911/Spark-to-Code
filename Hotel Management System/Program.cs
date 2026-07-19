@@ -191,7 +191,22 @@ namespace Hotel_Management_System
                 Console.WriteLine($"Room {room.roomNumber} | Type: {room.roomType} | Price: {room.pricePerNight:F2} | Status: {status}");
             }
         }
-        static void Case05_ViewAllGuests() { }
+        static void Case05_ViewAllGuests()
+        {
+            if (guests.Count == 0)
+            {
+                Console.WriteLine("No guests have been registered yet.");
+                return;
+            }
+
+            var sortedGuests = guests.OrderBy(g => g.guestName);
+
+            Console.WriteLine($"Total guests: {guests.Count()}");
+            foreach (var guest in sortedGuests)
+            {
+                Console.WriteLine($"ID: {guest.guestId} | Name: {guest.guestName} | Room: {guest.roomNumber} | Check-in: {guest.checkInDate} | Nights: {guest.totalNights}");
+            }
+        }
         static void Case06_SearchFilterRooms() { }
         static void Case07_GuestBookingStatistics() { }
         static void Case08_UpdateRoomPrice() { }
