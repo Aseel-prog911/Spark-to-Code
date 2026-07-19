@@ -1,44 +1,121 @@
 ﻿using System;
-namespace OOP_Part_1
+
+namespace BankStudentManagement
 {
-    internal class Program
+    class BankAccount
     {
-        static BankAccount account1 = new BankAccount("1001", "Karim", 500);
-        static BankAccount account2 = new BankAccount("1002", "Ali", 1000);
+        public int AccountNumber;
+        public string HolderName;
+        public double Balance;
 
-        static Student student1 = new Student("S001", "Ahmed", "Muscat");
-        static Student student2 = new Student("S002", "Sara", "Salalah");
-
-        static Product product1 = new Product("P001", "Laptop", 350);
-        static Product product2 = new Product("P002", "Phone", 200);
-        static void Main(string[] args)
+        public BankAccount(int accountNumber, string holderName, double balance)
         {
-            Console.Clear();
-
-            Console.WriteLine("Select Account");
-            Console.WriteLine("1. Karim");
-            Console.WriteLine("2. Ali");
-            Console.Write("Choose: ");
-
-            int choice = int.Parse(Console.ReadLine());
-
-            if (choice == 1)
-            {
-                account1.CheckBalance();
-            }
-            else if (choice == 2)
-            {
-                account2.CheckBalance();
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice.");
-            }
-
-            Console.WriteLine();
-            Console.WriteLine("Press Enter to return...");
-            Console.ReadLine();
+            AccountNumber = accountNumber;
+            HolderName = holderName;
+            Balance = balance;
         }
 
+        public void Deposit(double amount)
+        {
+            Balance += amount;
+            SendEmail();
+        }
+
+        public void Withdraw(double amount)
+        {
+            if (Balance >= amount)
+                Balance -= amount;
+            else
+                Console.WriteLine("Insufficient balance to withdraw that amount.");
+            SendEmail();
+        }
+
+        public double CheckBalance()
+        {
+            PrintInformation();
+            return Balance;
+        }
+
+        private void PrintInformation()
+        {
+            Console.WriteLine($"Holder: {HolderName} | Balance: {Balance}");
+        }
+
+        private void SendEmail()
+        {
+            Console.WriteLine("[Email Notification Sent]");
+        }
+    }
+
+    class Student
+    {
+        public int Grade;
+        public string Name;
+        public string Address;
+        private string email;
+        int age;
+
+        public Student(string name, string address, int grade)
+        {
+            Name = name;
+            Address = address;
+            Grade = grade;
+        }
+
+        public void Register(string Email)
+        {
+            email = Email;
+            SendEmail();
+        }
+
+        private void SendEmail()
+        {
+            Console.WriteLine("[Registration Email Sent]");
+        }
+    }
+
+    class Product
+    {
+        public string ProductName;
+        public double Price;
+        public int StockQuantity;
+
+        public Product(string productName, double price, int stockQuantity)
+        {
+            ProductName = productName;
+            Price = price;
+            StockQuantity = stockQuantity;
+        }
+
+        public void Sell(int quantity)
+        {
+            if (StockQuantity >= quantity)
+                StockQuantity -= quantity;
+            else
+                Console.WriteLine("Not enough stock to complete this sale.");
+            LogTransaction();
+        }
+
+        public void Restock(int quantity)
+        {
+            StockQuantity += quantity;
+            LogTransaction();
+        }
+
+        public double GetInventoryValue()
+        {
+            PrintDetails();
+            return Price * StockQuantity;
+        }
+
+        private void PrintDetails()
+        {
+            Console.WriteLine($"Product: {ProductName} | Price: {Price} | Stock: {StockQuantity}");
+        }
+
+        private void LogTransaction()
+        {
+            Console.WriteLine("[Transaction Logged]");
+        }
     }
 }
