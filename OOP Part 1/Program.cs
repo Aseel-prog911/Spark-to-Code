@@ -364,7 +364,24 @@ namespace BankStudentManagement
 
             Console.WriteLine($"Account status: {status}");
         }
-        static void Case13_BulkSaleWithRevenue() { }
+        static void Case13_BulkSaleWithRevenue()
+        {
+            Product p = ChooseProduct();
+            Console.Write("Enter quantity to sell: ");
+            int qty = int.Parse(Console.ReadLine());
+
+            if (p.StockQuantity < qty)
+            {
+                int needed = qty - p.StockQuantity;
+                Console.WriteLine($"Not enough stock. You need {needed} more unit(s) to fulfill this order. Sale cancelled.");
+            }
+            else
+            {
+                p.Sell(qty);
+                double revenue = qty * p.Price;
+                Console.WriteLine($"Sale successful. Total revenue: {revenue}");
+            }
+        }
         static void Case14_ScholarshipEligibility() { }
         static void Case15_FullBalanceTopUp() { }
         static void Case16_QuickAccountOpening() { }
