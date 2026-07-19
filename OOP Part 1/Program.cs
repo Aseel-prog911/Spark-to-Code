@@ -338,7 +338,18 @@ namespace BankStudentManagement
             s.Grade = (int)gradeValue;
             Console.WriteLine($"Grade updated successfully to {s.Grade}.");
         }
-        static void Case11_StudentReportCard() { }
+        static void Case11_StudentReportCard()
+        {
+            Student s = ChooseStudent();
+            string status = s.Grade >= 60 ? "Pass" : "Fail";
+
+            Console.WriteLine("---------- Report Card ----------");
+            Console.WriteLine($"Name: {s.Name}");
+            Console.WriteLine($"Address: {s.Address}");
+            Console.WriteLine($"Grade: {s.Grade}");
+            Console.WriteLine($"Status: {status}");
+            Console.WriteLine("----------------------------------");
+        }
         static void Case12_AccountHealthStatus() { }
         static void Case13_BulkSaleWithRevenue() { }
         static void Case14_ScholarshipEligibility() { }
