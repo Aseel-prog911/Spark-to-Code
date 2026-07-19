@@ -460,7 +460,42 @@ namespace Hotel_Management_System
                 Console.WriteLine("Checkout cancelled. No changes made.");
             }
         }
-        static void Case12_RemoveUnavailableRooms() { }
+        static void Case12_RemoveUnavailableRooms()
+        {
+            var removableRooms = rooms
+                .Where(r => !r.isAvailable && !guests.Any(g => g.roomNumber == r.roomNumber.ToString()))
+                .OrderBy(r => r.roomNumber)
+                .ToList();
+
+            if (!removableRooms.Any())
+            {
+                Console.WriteLine("All unavailable rooms are currently occupied. No rooms can be decommissioned.");
+                return;
+            }
+
+            Console.WriteLine($"Removable rooms: {removableRooms.Count}");
+            foreach (var r in removableRooms)
+            {
+                Console.WriteLine($"Room {r.roomNumber} | Type: {r.roomType} | Price: {r.pricePerNight:F2}");
+            }
+
+            Console.Write("Confirm removal? (Y/N): ");
+            string confirm = Console.ReadLine();
+
+            if (confirm.Equals("Y", StringComparison.OrdinalIgnoreCase))
+            {
+                rooms.RemoveAll(r => !r.isAvailable && !guests.Any(g => g.roomNumber == r.roomNumber.ToString()));
+
+                Console.WriteLine($"Removal complete. Total rooms now: {rooms.Count}");
+                var remaining = rooms.Select(r => new { r.roomNumber, r.roomType });
+                foreach (var r in remaining)
+                    Console.WriteLine($"Room {r.roomNumber} | Type: {r.roomType}");
+            }
+            else
+            {
+                Console.WriteLine("Removal cancelled. No rooms were removed.");
+            }
+        }
         static void Case13_ExtendGuestStay() { }
         static void Case14_HighestRevenueBooking() { }
         static void Case15_GuestPaginationViewer() { }
