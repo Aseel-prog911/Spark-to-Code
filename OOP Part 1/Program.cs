@@ -350,7 +350,20 @@ namespace BankStudentManagement
             Console.WriteLine($"Status: {status}");
             Console.WriteLine("----------------------------------");
         }
-        static void Case12_AccountHealthStatus() { }
+        static void Case12_AccountHealthStatus()
+        {
+            BankAccount acc = ChooseAccount();
+            string status;
+
+            if (acc.Balance < 50)
+                status = "Low Balance";
+            else if (acc.Balance <= 1000)
+                status = "Healthy";
+            else
+                status = "Premium";
+
+            Console.WriteLine($"Account status: {status}");
+        }
         static void Case13_BulkSaleWithRevenue() { }
         static void Case14_ScholarshipEligibility() { }
         static void Case15_FullBalanceTopUp() { }
