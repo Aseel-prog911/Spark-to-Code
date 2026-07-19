@@ -403,7 +403,22 @@ namespace BankStudentManagement
                 if (!balanceOk) Console.WriteLine($"- Balance {acc.Balance} is below the required 100.");
             }
         }
-        static void Case15_FullBalanceTopUp() { }
+        static void Case15_FullBalanceTopUp()
+        {
+            BankAccount acc = ChooseAccount();
+            double before = acc.Balance;
+
+            if (before < 50)
+            {
+                double topUp = 100 - before;
+                acc.Deposit(topUp);
+                Console.WriteLine($"Balance before: {before} | Balance after: {acc.Balance}");
+            }
+            else
+            {
+                Console.WriteLine("No top-up needed. Balance is already 50 or above.");
+            }
+        }
         static void Case16_QuickAccountOpening() { }
         static void Case17_TotalStudentsCounter() { }
         static void Case18_OverdrawnCheck() { }
