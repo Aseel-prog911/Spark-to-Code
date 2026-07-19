@@ -253,7 +253,14 @@ namespace BankStudentManagement
             double value = p.GetInventoryValue();
             Console.WriteLine($"Total inventory value: {value}");
         }
-        static void Case6_RegisterStudent() { }
+        static void Case6_RegisterStudent()
+        {
+            Student s = ChooseStudent();
+            Console.Write("Enter email: ");
+            string email = Console.ReadLine();
+            s.Register(email);
+            Console.WriteLine($"{s.Name} has been registered successfully.");
+        }
         static void Case7_CompareBalances() { }
         static void Case8_RestockAndCheck() { }
         static void Case9_TransferBetweenAccounts() { }
