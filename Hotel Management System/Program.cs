@@ -367,7 +367,25 @@ namespace Hotel_Management_System
 
             Console.WriteLine($"Price updated for Room {roomNumber}. Old price: {oldPrice:F2} | New price: {newPrice:F2}");
         }
-        static void Case09_GuestLookupByName() { }
+        static void Case09_GuestLookupByName()
+        {
+            Console.Write("Enter name or partial name to search: ");
+            string search = Console.ReadLine();
+
+            var matches = guests.Where(g => g.guestName.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
+
+            if (!matches.Any())
+            {
+                Console.WriteLine("No guests matched that search.");
+                return;
+            }
+
+            Console.WriteLine($"Matches found: {matches.Count}");
+            foreach (var g in matches)
+            {
+                Console.WriteLine($"ID: {g.guestId} | Name: {g.guestName} | Room: {g.roomNumber}");
+            }
+        }
         static void Case10_RoomTypeBreakdown() { }
         static void Case11_CheckOutGuest() { }
         static void Case12_RemoveUnavailableRooms() { }
