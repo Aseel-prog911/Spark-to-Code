@@ -292,7 +292,53 @@ namespace Hotel_Management_System
                     break;
             }
         }
-        static void Case07_GuestBookingStatistics() { }
+        static void Case07_GuestBookingStatistics()
+        {
+            int totalGuests = guests.Count();
+            int guestsWithRoom = guests.Count(g => g.roomNumber != "Not Assigned");
+
+            int totalRooms = rooms.Count();
+            int bookedRooms = rooms.Count(r => !r.isAvailable);
+
+            Console.WriteLine($"Total guests: {totalGuests} | Guests with a room: {guestsWithRoom}");
+            Console.WriteLine($"Total rooms: {totalRooms} | Booked rooms: {bookedRooms}");
+
+            var activeGuests = guests.Where(g => g.roomNumber != "Not Assigned").ToList();
+
+            if (!activeGuests.Any())
+            {
+                Console.WriteLine("No active bookings recorded.");
+                return;
+            }
+
+            double avgNights = activeGuests.Average(g => g.totalNights);
+            Console.WriteLine($"Average nights (active bookings): {avgNights:F2}");
+
+            var topGuests = activeGuests
+                .OrderByDescending(g => g.calculateTotalCost(GetRoomPrice(g.roomNumber)))
+                .Take(3)
+                .ToList();
+
+            Console.WriteLine("Top 3 highest-spending guests:");
+            foreach (var g in topGuests)
+            {
+                double cost = g.calculateTotalCost(GetRoomPrice(g.roomNumber));
+                Console.WriteLine($"{g.guestName} | Room {g.roomNumber} | Total Cost: {cost:F2}");
+            }
+
+            Console.WriteLine("Booking summary:");
+            var summaryLines = activeGuests.Select(g =>
+                $"{g.guestName} — Room {g.roomNumber} — {g.totalNights} nights — OMR {g.calculateTotalCost(GetRoomPrice(g.roomNumber)):F2}");
+
+            foreach (var line in summaryLines)
+                Console.WriteLine(line);
+        }
+
+        static double GetRoomPrice(string roomNumber)
+        {
+            var room = rooms.FirstOrDefault(r => r.roomNumber.ToString() == roomNumber);
+            return room != null ? room.pricePerNight : 0;
+        }
         static void Case08_UpdateRoomPrice() { }
         static void Case09_GuestLookupByName() { }
         static void Case10_RoomTypeBreakdown() { }
