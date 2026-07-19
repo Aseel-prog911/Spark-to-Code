@@ -386,7 +386,30 @@ namespace Hotel_Management_System
                 Console.WriteLine($"ID: {g.guestId} | Name: {g.guestName} | Room: {g.roomNumber}");
             }
         }
-        static void Case10_RoomTypeBreakdown() { }
+        static void Case10_RoomTypeBreakdown()
+        {
+            string[] types = { "Single", "Double", "Suite" };
+
+            foreach (var type in types)
+            {
+                int count = rooms.Count(r => r.roomType.Equals(type, StringComparison.OrdinalIgnoreCase));
+                string avgDisplay = count > 0
+                    ? rooms.Where(r => r.roomType.Equals(type, StringComparison.OrdinalIgnoreCase)).Average(r => r.pricePerNight).ToString("F2")
+                    : "N/A";
+
+                Console.WriteLine($"{type}: {count} room(s) | Average price: {avgDisplay}");
+            }
+
+            if (rooms.Any())
+            {
+                double overallAvg = rooms.Average(r => r.pricePerNight);
+                Console.WriteLine($"Overall average price: {overallAvg:F2}");
+            }
+            else
+            {
+                Console.WriteLine("Overall average price: N/A");
+            }
+        }
         static void Case11_CheckOutGuest() { }
         static void Case12_RemoveUnavailableRooms() { }
         static void Case13_ExtendGuestStay() { }
