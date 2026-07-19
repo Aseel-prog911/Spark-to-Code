@@ -214,8 +214,12 @@ namespace BankStudentManagement
             return input == "1" ? product1 : product2;
         }
 
-        // Case methods will be added in the next commits
-        static void Case1_ViewAccountDetails() { }
+        static void Case1_ViewAccountDetails()
+        {
+            BankAccount acc = ChooseAccount();
+            acc.CheckBalance();
+        }
+
         static void Case2_UpdateStudentAddress() { }
         static void Case3_MakeDeposit() { }
         static void Case4_MakeWithdrawal() { }
