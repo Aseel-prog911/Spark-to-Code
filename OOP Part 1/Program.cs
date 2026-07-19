@@ -276,7 +276,26 @@ namespace BankStudentManagement
                 Console.WriteLine("Both accounts have equal balances.");
             }
         }
-        static void Case8_RestockAndCheck() { }
+        static void Case8_RestockAndCheck()
+        {
+            Product p = ChooseProduct();
+            Console.Write("Enter quantity to restock: ");
+            int qty = int.Parse(Console.ReadLine());
+            p.Restock(qty);
+
+            if (p.StockQuantity < 10)
+            {
+                Console.WriteLine("Stock level: Low");
+            }
+            else if (p.StockQuantity <= 49)
+            {
+                Console.WriteLine("Stock level: Moderate");
+            }
+            else
+            {
+                Console.WriteLine("Stock level: Well Stocked");
+            }
+        }
         static void Case9_TransferBetweenAccounts() { }
         static void Case10_UpdateGradeValidated() { }
         static void Case11_StudentReportCard() { }
