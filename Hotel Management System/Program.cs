@@ -110,7 +110,29 @@ namespace Hotel_Management_System
             Console.WriteLine($"Room {roomNumber} | Type: {roomType} | Price: {price:F2}");
             Console.WriteLine($"Total rooms now: {rooms.Count}");
         }
-        static void Case02_RegisterNewGuest() { }
+        static void Case02_RegisterNewGuest()
+        {
+            Console.Write("Enter guest name: ");
+            string guestName = Console.ReadLine();
+
+            Console.Write("Enter check-in date: ");
+            string checkInDate = Console.ReadLine();
+
+            Console.Write("Enter number of nights: ");
+            if (!int.TryParse(Console.ReadLine(), out int totalNights) || totalNights <= 0)
+            {
+                Console.WriteLine("Invalid number of nights. Must be a positive integer.");
+                return;
+            }
+
+            string guestId = "G" + (guests.Count + 1).ToString("D3");
+
+            Guest newGuest = new Guest(guestId, guestName, checkInDate, totalNights);
+            guests.Add(newGuest);
+
+            Console.WriteLine("Guest registered successfully!");
+            Console.WriteLine($"Guest ID: {guestId} | Name: {guestName} | Check-in: {checkInDate} | Nights: {totalNights}");
+        }
         static void Case03_BookRoom() { }
         static void Case04_ViewAllRooms() { }
         static void Case05_ViewAllGuests() { }
