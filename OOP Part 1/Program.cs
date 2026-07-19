@@ -382,7 +382,27 @@ namespace BankStudentManagement
                 Console.WriteLine($"Sale successful. Total revenue: {revenue}");
             }
         }
-        static void Case14_ScholarshipEligibility() { }
+        static void Case14_ScholarshipEligibility()
+        {
+            Console.WriteLine("Choose the student:");
+            Student s = ChooseStudent();
+            Console.WriteLine("Choose the account:");
+            BankAccount acc = ChooseAccount();
+
+            bool gradeOk = s.Grade >= 80;
+            bool balanceOk = acc.Balance >= 100;
+
+            if (gradeOk && balanceOk)
+            {
+                Console.WriteLine("Eligible");
+            }
+            else
+            {
+                Console.WriteLine("Not Eligible. Reason(s):");
+                if (!gradeOk) Console.WriteLine($"- Grade {s.Grade} is below the required 80.");
+                if (!balanceOk) Console.WriteLine($"- Balance {acc.Balance} is below the required 100.");
+            }
+        }
         static void Case15_FullBalanceTopUp() { }
         static void Case16_QuickAccountOpening() { }
         static void Case17_TotalStudentsCounter() { }
