@@ -317,7 +317,27 @@ namespace BankStudentManagement
                 Console.WriteLine("Transfer failed: insufficient funds in source account.");
             }
         }
-        static void Case10_UpdateGradeValidated() { }
+        static void Case10_UpdateGradeValidated()
+        {
+            Student s = ChooseStudent();
+            Console.Write("Enter new grade: ");
+            string input = Console.ReadLine();
+
+            if (!double.TryParse(input, out double gradeValue))
+            {
+                Console.WriteLine("Invalid input: not a number. No change made.");
+                return;
+            }
+
+            if (gradeValue < 0 || gradeValue > 100)
+            {
+                Console.WriteLine("Invalid grade: must be between 0 and 100. No change made.");
+                return;
+            }
+
+            s.Grade = (int)gradeValue;
+            Console.WriteLine($"Grade updated successfully to {s.Grade}.");
+        }
         static void Case11_StudentReportCard() { }
         static void Case12_AccountHealthStatus() { }
         static void Case13_BulkSaleWithRevenue() { }
