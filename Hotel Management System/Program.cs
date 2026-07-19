@@ -339,7 +339,34 @@ namespace Hotel_Management_System
             var room = rooms.FirstOrDefault(r => r.roomNumber.ToString() == roomNumber);
             return room != null ? room.pricePerNight : 0;
         }
-        static void Case08_UpdateRoomPrice() { }
+        static void Case08_UpdateRoomPrice()
+        {
+            Console.Write("Enter room number: ");
+            if (!int.TryParse(Console.ReadLine(), out int roomNumber))
+            {
+                Console.WriteLine("Invalid room number.");
+                return;
+            }
+
+            Room room = rooms.FirstOrDefault(r => r.roomNumber == roomNumber);
+            if (room == null)
+            {
+                Console.WriteLine("Error: Room not found.");
+                return;
+            }
+
+            Console.Write("Enter new price per night: ");
+            if (!double.TryParse(Console.ReadLine(), out double newPrice) || newPrice <= 0)
+            {
+                Console.WriteLine("Invalid price. No change made.");
+                return;
+            }
+
+            double oldPrice = room.pricePerNight;
+            room.pricePerNight = newPrice;
+
+            Console.WriteLine($"Price updated for Room {roomNumber}. Old price: {oldPrice:F2} | New price: {newPrice:F2}");
+        }
         static void Case09_GuestLookupByName() { }
         static void Case10_RoomTypeBreakdown() { }
         static void Case11_CheckOutGuest() { }
