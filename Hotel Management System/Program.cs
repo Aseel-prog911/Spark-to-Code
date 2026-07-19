@@ -528,7 +528,30 @@ namespace Hotel_Management_System
 
             Console.WriteLine($"Stay extended. New total nights: {guest.totalNights} | New total cost: {newTotalCost:F2}");
         }
-        static void Case14_HighestRevenueBooking() { }
+        static void Case14_HighestRevenueBooking()
+        {
+            var activeGuests = guests.Where(g => g.roomNumber != "Not Assigned").ToList();
+
+            if (!activeGuests.Any())
+            {
+                Console.WriteLine("No active bookings recorded.");
+                return;
+            }
+
+            var topBooking = activeGuests
+                .Select(g => new
+                {
+                    g.guestName,
+                    g.roomNumber,
+                    TotalCost = g.calculateTotalCost(GetRoomPrice(g.roomNumber))
+                })
+                .OrderByDescending(x => x.TotalCost)
+                .Take(1)
+                .First();
+
+            Console.WriteLine("Highest revenue booking:");
+            Console.WriteLine($"Guest: {topBooking.guestName} | Room: {topBooking.roomNumber} | Total Cost: {topBooking.TotalCost:F2}");
+        }
         static void Case15_GuestPaginationViewer() { }
     }
 }
