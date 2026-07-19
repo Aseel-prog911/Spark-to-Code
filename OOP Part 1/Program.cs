@@ -261,7 +261,21 @@ namespace BankStudentManagement
             s.Register(email);
             Console.WriteLine($"{s.Name} has been registered successfully.");
         }
-        static void Case7_CompareBalances() { }
+        static void Case7_CompareBalances()
+        {
+            if (account1.Balance > account2.Balance)
+            {
+                Console.WriteLine($"{account1.HolderName} has more money.");
+            }
+            else if (account2.Balance > account1.Balance)
+            {
+                Console.WriteLine($"{account2.HolderName} has more money.");
+            }
+            else
+            {
+                Console.WriteLine("Both accounts have equal balances.");
+            }
+        }
         static void Case8_RestockAndCheck() { }
         static void Case9_TransferBetweenAccounts() { }
         static void Case10_UpdateGradeValidated() { }
