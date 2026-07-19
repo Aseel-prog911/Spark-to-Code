@@ -54,12 +54,14 @@ namespace BankStudentManagement
         public string Address;
         private string email;
         int age;
+        private static int totalStudents = 0;
 
         public Student(string name, string address, int grade)
         {
             Name = name;
             Address = address;
             Grade = grade;
+            totalStudents++;
         }
 
         public void Register(string Email)
@@ -71,6 +73,10 @@ namespace BankStudentManagement
         private void SendEmail()
         {
             Console.WriteLine("[Registration Email Sent]");
+        }
+        public static int GetTotalStudents()
+        {
+            return totalStudents;
         }
     }
 
@@ -433,7 +439,11 @@ namespace BankStudentManagement
             Console.WriteLine("New account created successfully:");
             newAccount.CheckBalance();
         }
-        static void Case17_TotalStudentsCounter() { }
+        static void Case17_TotalStudentsCounter()
+        {
+            int total = Student.GetTotalStudents();
+            Console.WriteLine($"Total students created: {total}");
+        }
         static void Case18_OverdrawnCheck() { }
         static void Case19_SetStudentPin() { }
     }
