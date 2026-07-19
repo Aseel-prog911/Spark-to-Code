@@ -129,6 +129,7 @@ namespace BankStudentManagement
 
         static Product product1 = new Product("Wireless Mouse", 5.500, 50);
         static Product product2 = new Product("Mechanical Keyboard", 15.750, 20);
+        static BankAccount newAccount = null;
 
         static void Main(string[] args)
         {
@@ -419,7 +420,19 @@ namespace BankStudentManagement
                 Console.WriteLine("No top-up needed. Balance is already 50 or above.");
             }
         }
-        static void Case16_QuickAccountOpening() { }
+        static void Case16_QuickAccountOpening()
+        {
+            Console.Write("Enter new account number: ");
+            int accNum = int.Parse(Console.ReadLine());
+            Console.Write("Enter holder name: ");
+            string holder = Console.ReadLine();
+            Console.Write("Enter starting balance: ");
+            double balance = double.Parse(Console.ReadLine());
+
+            newAccount = new BankAccount(accNum, holder, balance);
+            Console.WriteLine("New account created successfully:");
+            newAccount.CheckBalance();
+        }
         static void Case17_TotalStudentsCounter() { }
         static void Case18_OverdrawnCheck() { }
         static void Case19_SetStudentPin() { }
