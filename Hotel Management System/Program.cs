@@ -133,7 +133,47 @@ namespace Hotel_Management_System
             Console.WriteLine("Guest registered successfully!");
             Console.WriteLine($"Guest ID: {guestId} | Name: {guestName} | Check-in: {checkInDate} | Nights: {totalNights}");
         }
-        static void Case03_BookRoom() { }
+        static void Case03_BookRoom()
+        {
+            Console.Write("Enter guest ID: ");
+            string guestId = Console.ReadLine();
+
+            Guest guest = guests.FirstOrDefault(g => g.guestId == guestId);
+            if (guest == null)
+            {
+                Console.WriteLine("Error: Guest not found.");
+                return;
+            }
+
+            Console.Write("Enter room number: ");
+            if (!int.TryParse(Console.ReadLine(), out int roomNumber))
+            {
+                Console.WriteLine("Invalid room number.");
+                return;
+            }
+
+            Room room = rooms.FirstOrDefault(r => r.roomNumber == roomNumber);
+            if (room == null)
+            {
+                Console.WriteLine("Error: Room not found.");
+                return;
+            }
+
+            if (!room.isAvailable)
+            {
+                Console.WriteLine("Room is already booked.");
+                return;
+            }
+
+            guest.roomNumber = room.roomNumber.ToString();
+            room.isAvailable = false;
+
+            double totalCost = guest.calculateTotalCost(room.pricePerNight);
+
+            Console.WriteLine("Booking confirmed!");
+            Console.WriteLine($"Guest: {guest.guestName} | Room: {room.roomNumber} | Type: {room.roomType}");
+            Console.WriteLine($"Price/Night: {room.pricePerNight:F2} | Nights: {guest.totalNights} | Total Cost: {totalCost:F2}");
+        }
         static void Case04_ViewAllRooms() { }
         static void Case05_ViewAllGuests() { }
         static void Case06_SearchFilterRooms() { }
