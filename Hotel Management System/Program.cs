@@ -207,7 +207,91 @@ namespace Hotel_Management_System
                 Console.WriteLine($"ID: {guest.guestId} | Name: {guest.guestName} | Room: {guest.roomNumber} | Check-in: {guest.checkInDate} | Nights: {guest.totalNights}");
             }
         }
-        static void Case06_SearchFilterRooms() { }
+        static void Case06_SearchFilterRooms()
+        {
+            Console.WriteLine("--- Search & Filter Rooms ---");
+            Console.WriteLine("1. Show all available rooms");
+            Console.WriteLine("2. Filter by room type");
+            Console.WriteLine("3. Filter by max price");
+            Console.WriteLine("4. Room price statistics");
+            Console.WriteLine("0. Back");
+            Console.Write("Enter your choice: ");
+            string subChoice = Console.ReadLine();
+
+            switch (subChoice)
+            {
+                case "1":
+                    var availableRooms = rooms.Where(r => r.isAvailable).OrderBy(r => r.pricePerNight).ToList();
+                    if (!availableRooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+                    Console.WriteLine($"Available rooms: {availableRooms.Count}");
+                    foreach (var r in availableRooms)
+                        Console.WriteLine($"Room {r.roomNumber} | Type: {r.roomType} | Price: {r.pricePerNight:F2}");
+                    break;
+
+                case "2":
+                    Console.Write("Enter room type: ");
+                    string type = Console.ReadLine();
+                    var typeRooms = rooms.Where(r => r.roomType.Equals(type, StringComparison.OrdinalIgnoreCase)).ToList();
+                    if (!typeRooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+                    Console.WriteLine($"Rooms of type '{type}': {typeRooms.Count}");
+                    foreach (var r in typeRooms)
+                        Console.WriteLine($"Room {r.roomNumber} | Price: {r.pricePerNight:F2} | Status: {(r.isAvailable ? "Available" : "Booked")}");
+                    break;
+
+                case "3":
+                    Console.Write("Enter maximum price: ");
+                    if (!double.TryParse(Console.ReadLine(), out double maxPrice))
+                    {
+                        Console.WriteLine("Invalid price.");
+                        return;
+                    }
+                    var affordableRooms = rooms.Where(r => r.isAvailable && r.pricePerNight <= maxPrice)
+                                                .OrderBy(r => r.pricePerNight).ToList();
+                    if (!affordableRooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+                    Console.WriteLine($"Rooms at or below {maxPrice:F2}: {affordableRooms.Count}");
+                    foreach (var r in affordableRooms)
+                        Console.WriteLine($"Room {r.roomNumber} | Type: {r.roomType} | Price: {r.pricePerNight:F2}");
+                    break;
+
+                case "4":
+                    if (!rooms.Any())
+                    {
+                        Console.WriteLine("No rooms found for the selected criteria.");
+                        return;
+                    }
+                    int totalRooms = rooms.Count();
+                    int availableCount = rooms.Count(r => r.isAvailable);
+                    double avgPrice = rooms.Average(r => r.pricePerNight);
+                    double minPrice = rooms.Min(r => r.pricePerNight);
+                    double maxPriceStat = rooms.Max(r => r.pricePerNight);
+
+                    Console.WriteLine($"Total rooms: {totalRooms}");
+                    Console.WriteLine($"Available rooms: {availableCount}");
+                    Console.WriteLine($"Average price: {avgPrice:F2}");
+                    Console.WriteLine($"Cheapest price: {minPrice:F2}");
+                    Console.WriteLine($"Most expensive price: {maxPriceStat:F2}");
+                    break;
+
+                case "0":
+                    return;
+
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    break;
+            }
+        }
         static void Case07_GuestBookingStatistics() { }
         static void Case08_UpdateRoomPrice() { }
         static void Case09_GuestLookupByName() { }
