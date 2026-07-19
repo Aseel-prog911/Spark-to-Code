@@ -296,7 +296,27 @@ namespace BankStudentManagement
                 Console.WriteLine("Stock level: Well Stocked");
             }
         }
-        static void Case9_TransferBetweenAccounts() { }
+        static void Case9_TransferBetweenAccounts()
+        {
+            Console.WriteLine("Choose SOURCE account:");
+            BankAccount source = ChooseAccount();
+            Console.WriteLine("Choose DESTINATION account:");
+            BankAccount destination = ChooseAccount();
+
+            Console.Write("Enter amount to transfer: ");
+            double amount = double.Parse(Console.ReadLine());
+
+            if (source.Balance >= amount)
+            {
+                source.Withdraw(amount);
+                destination.Deposit(amount);
+                Console.WriteLine("Transfer successful.");
+            }
+            else
+            {
+                Console.WriteLine("Transfer failed: insufficient funds in source account.");
+            }
+        }
         static void Case10_UpdateGradeValidated() { }
         static void Case11_StudentReportCard() { }
         static void Case12_AccountHealthStatus() { }
