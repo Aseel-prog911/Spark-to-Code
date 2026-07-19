@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HotelManagementSystem
+namespace Hotel_Management_System
 {
     class Guest
     {
