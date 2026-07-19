@@ -59,6 +59,7 @@ namespace BankStudentManagement
         private string email;
         int age;
         private static int totalStudents = 0;
+        private int pin;
 
         public Student(string name, string address, int grade)
         {
@@ -81,6 +82,10 @@ namespace BankStudentManagement
         public static int GetTotalStudents()
         {
             return totalStudents;
+        }
+        public int SecurityPin
+        {
+            set { pin = value; }
         }
     }
 
@@ -456,6 +461,21 @@ namespace BankStudentManagement
             else
                 Console.WriteLine($"{acc.HolderName}'s account is NOT overdrawn.");
         }
-        static void Case19_SetStudentPin() { }
+        static void Case19_SetStudentPin()
+        {
+            Student s = ChooseStudent();
+            Console.Write("Enter a 4-digit PIN: ");
+            string input = Console.ReadLine();
+
+            if (input.Length == 4 && int.TryParse(input, out int pinValue))
+            {
+                s.SecurityPin = pinValue;
+                Console.WriteLine($"PIN set successfully for {s.Name}.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid PIN. It must be exactly 4 digits.");
+            }
+        }
     }
 }
