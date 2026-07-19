@@ -229,7 +229,15 @@ namespace BankStudentManagement
             Console.WriteLine($"Address updated. New address for {s.Name}: {s.Address}");
         }
 
-        static void Case3_MakeDeposit() { }
+        static void Case3_MakeDeposit()
+        {
+            BankAccount acc = ChooseAccount();
+            Console.Write("Enter deposit amount: ");
+            double amount = double.Parse(Console.ReadLine());
+            acc.Deposit(amount);
+            Console.WriteLine($"{acc.HolderName}'s new balance: {acc.Balance}");
+        }
+
         static void Case4_MakeWithdrawal() { }
         static void Case5_ViewProductDetails() { }
         static void Case6_RegisterStudent() { }
