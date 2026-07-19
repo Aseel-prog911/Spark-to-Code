@@ -45,6 +45,10 @@ namespace BankStudentManagement
         {
             Console.WriteLine("[Email Notification Sent]");
         }
+        public bool IsOverdrawn
+        {
+            get { return Balance < 0; }
+        }
     }
 
     class Student
@@ -444,7 +448,14 @@ namespace BankStudentManagement
             int total = Student.GetTotalStudents();
             Console.WriteLine($"Total students created: {total}");
         }
-        static void Case18_OverdrawnCheck() { }
+        static void Case18_OverdrawnCheck()
+        {
+            BankAccount acc = ChooseAccount();
+            if (acc.IsOverdrawn)
+                Console.WriteLine($"{acc.HolderName}'s account is OVERDRAWN.");
+            else
+                Console.WriteLine($"{acc.HolderName}'s account is NOT overdrawn.");
+        }
         static void Case19_SetStudentPin() { }
     }
 }
