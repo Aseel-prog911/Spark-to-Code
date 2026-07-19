@@ -496,7 +496,38 @@ namespace Hotel_Management_System
                 Console.WriteLine("Removal cancelled. No rooms were removed.");
             }
         }
-        static void Case13_ExtendGuestStay() { }
+        static void Case13_ExtendGuestStay()
+        {
+            Console.Write("Enter guest ID: ");
+            string guestId = Console.ReadLine();
+
+            Guest guest = guests.FirstOrDefault(g => g.guestId == guestId);
+            if (guest == null)
+            {
+                Console.WriteLine("Error: Guest not found.");
+                return;
+            }
+
+            if (guest.roomNumber == "Not Assigned")
+            {
+                Console.WriteLine("This guest has no active booking to extend.");
+                return;
+            }
+
+            Console.Write("Enter additional nights: ");
+            if (!int.TryParse(Console.ReadLine(), out int additionalNights) || additionalNights <= 0)
+            {
+                Console.WriteLine("Invalid input. Additional nights must be a positive number. No change made.");
+                return;
+            }
+
+            guest.totalNights += additionalNights;
+
+            double roomPrice = GetRoomPrice(guest.roomNumber);
+            double newTotalCost = guest.calculateTotalCost(roomPrice);
+
+            Console.WriteLine($"Stay extended. New total nights: {guest.totalNights} | New total cost: {newTotalCost:F2}");
+        }
         static void Case14_HighestRevenueBooking() { }
         static void Case15_GuestPaginationViewer() { }
     }
