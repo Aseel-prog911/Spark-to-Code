@@ -552,6 +552,35 @@ namespace Hotel_Management_System
             Console.WriteLine("Highest revenue booking:");
             Console.WriteLine($"Guest: {topBooking.guestName} | Room: {topBooking.roomNumber} | Total Cost: {topBooking.TotalCost:F2}");
         }
-        static void Case15_GuestPaginationViewer() { }
+        static void Case15_GuestPaginationViewer()
+        {
+            const int pageSize = 3;
+
+            if (!guests.Any())
+            {
+                Console.WriteLine("No guests have been registered yet.");
+                return;
+            }
+
+            int totalPages = (int)Math.Ceiling(guests.Count / (double)pageSize);
+
+            Console.Write($"Enter page number (1 to {totalPages}): ");
+            if (!int.TryParse(Console.ReadLine(), out int pageNumber) || pageNumber < 1 || pageNumber > totalPages)
+            {
+                Console.WriteLine("That page does not exist.");
+                return;
+            }
+
+            var pageGuests = guests
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            Console.WriteLine($"Page {pageNumber} of {totalPages}:");
+            foreach (var g in pageGuests)
+            {
+                Console.WriteLine($"ID: {g.guestId} | Name: {g.guestName} | Room: {g.roomNumber}");
+            }
+        }
     }
 }
