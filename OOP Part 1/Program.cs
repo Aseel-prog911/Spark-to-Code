@@ -247,7 +247,12 @@ namespace BankStudentManagement
             Console.WriteLine($"Updated balance: {acc.Balance}");
         }
 
-        static void Case5_ViewProductDetails() { }
+        static void Case5_ViewProductDetails()
+        {
+            Product p = ChooseProduct();
+            double value = p.GetInventoryValue();
+            Console.WriteLine($"Total inventory value: {value}");
+        }
         static void Case6_RegisterStudent() { }
         static void Case7_CompareBalances() { }
         static void Case8_RestockAndCheck() { }
