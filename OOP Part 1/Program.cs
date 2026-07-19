@@ -238,7 +238,15 @@ namespace BankStudentManagement
             Console.WriteLine($"{acc.HolderName}'s new balance: {acc.Balance}");
         }
 
-        static void Case4_MakeWithdrawal() { }
+        static void Case4_MakeWithdrawal()
+        {
+            BankAccount acc = ChooseAccount();
+            Console.Write("Enter withdrawal amount: ");
+            double amount = double.Parse(Console.ReadLine());
+            acc.Withdraw(amount);
+            Console.WriteLine($"Updated balance: {acc.Balance}");
+        }
+
         static void Case5_ViewProductDetails() { }
         static void Case6_RegisterStudent() { }
         static void Case7_CompareBalances() { }
