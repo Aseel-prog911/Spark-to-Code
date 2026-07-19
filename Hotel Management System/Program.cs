@@ -410,7 +410,56 @@ namespace Hotel_Management_System
                 Console.WriteLine("Overall average price: N/A");
             }
         }
-        static void Case11_CheckOutGuest() { }
+        static void Case11_CheckOutGuest()
+        {
+            Console.Write("Enter guest ID to check out: ");
+            string guestId = Console.ReadLine();
+
+            Guest guest = guests.FirstOrDefault(g => g.guestId == guestId);
+            if (guest == null)
+            {
+                Console.WriteLine("Error: Guest not found.");
+                return;
+            }
+
+            if (guest.roomNumber == "Not Assigned")
+            {
+                Console.WriteLine("This guest has no active booking.");
+                return;
+            }
+
+            Room room = rooms.FirstOrDefault(r => r.roomNumber.ToString() == guest.roomNumber);
+            if (room == null)
+            {
+                Console.WriteLine("Error: Linked room not found.");
+                return;
+            }
+
+            double totalCost = guest.calculateTotalCost(room.pricePerNight);
+
+            Console.WriteLine("----- Final Bill -----");
+            Console.WriteLine($"Guest: {guest.guestName} | Room: {room.roomNumber} | Type: {room.roomType}");
+            Console.WriteLine($"Check-in: {guest.checkInDate} | Nights: {guest.totalNights} | Price/Night: {room.pricePerNight:F2}");
+            Console.WriteLine($"Total Cost: {totalCost:F2}");
+
+            Console.Write("Confirm checkout? (Y/N): ");
+            string confirm = Console.ReadLine();
+
+            if (confirm.Equals("Y", StringComparison.OrdinalIgnoreCase))
+            {
+                room.isAvailable = true;
+                guests.Remove(guest);
+
+                Console.WriteLine("Checkout complete.");
+                Console.WriteLine($"Remaining guests: {guests.Count} | Total rooms: {rooms.Count}");
+                bool isNowAvailable = rooms.Any(r => r.roomNumber == room.roomNumber && r.isAvailable);
+                Console.WriteLine($"Room {room.roomNumber} is now available: {isNowAvailable}");
+            }
+            else
+            {
+                Console.WriteLine("Checkout cancelled. No changes made.");
+            }
+        }
         static void Case12_RemoveUnavailableRooms() { }
         static void Case13_ExtendGuestStay() { }
         static void Case14_HighestRevenueBooking() { }
