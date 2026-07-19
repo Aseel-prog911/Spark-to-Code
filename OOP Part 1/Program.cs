@@ -132,7 +132,107 @@ namespace BankStudentManagement
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Objects created successfully.");
+            bool running = true;
+            while (running)
+            {
+                PrintMenu();
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1": Case1_ViewAccountDetails(); break;
+                    case "2": Case2_UpdateStudentAddress(); break;
+                    case "3": Case3_MakeDeposit(); break;
+                    case "4": Case4_MakeWithdrawal(); break;
+                    case "5": Case5_ViewProductDetails(); break;
+                    case "6": Case6_RegisterStudent(); break;
+                    case "7": Case7_CompareBalances(); break;
+                    case "8": Case8_RestockAndCheck(); break;
+                    case "9": Case9_TransferBetweenAccounts(); break;
+                    case "10": Case10_UpdateGradeValidated(); break;
+                    case "11": Case11_StudentReportCard(); break;
+                    case "12": Case12_AccountHealthStatus(); break;
+                    case "13": Case13_BulkSaleWithRevenue(); break;
+                    case "14": Case14_ScholarshipEligibility(); break;
+                    case "15": Case15_FullBalanceTopUp(); break;
+                    case "16": Case16_QuickAccountOpening(); break;
+                    case "17": Case17_TotalStudentsCounter(); break;
+                    case "18": Case18_OverdrawnCheck(); break;
+                    case "19": Case19_SetStudentPin(); break;
+                    case "20": running = false; Console.WriteLine("Goodbye!"); break;
+                    default: Console.WriteLine("Invalid choice, try again."); break;
+                }
+                Console.WriteLine();
+            }
         }
+
+        static void PrintMenu()
+        {
+            Console.WriteLine("==================== MENU ====================");
+            Console.WriteLine("1. View Account Details");
+            Console.WriteLine("2. Update Student Address");
+            Console.WriteLine("3. Make a Deposit");
+            Console.WriteLine("4. Make a Withdrawal");
+            Console.WriteLine("5. View Product Details");
+            Console.WriteLine("6. Register a Student");
+            Console.WriteLine("7. Compare Two Account Balances");
+            Console.WriteLine("8. Restock Product & Stock Level Check");
+            Console.WriteLine("9. Transfer Between Accounts");
+            Console.WriteLine("10. Update Student Grade (Validated)");
+            Console.WriteLine("11. Student Report Card");
+            Console.WriteLine("12. Account Health Status");
+            Console.WriteLine("13. Bulk Sale With Revenue Calculation");
+            Console.WriteLine("14. Scholarship Eligibility Check");
+            Console.WriteLine("15. Full Balance Top-Up Flow");
+            Console.WriteLine("16. Quick Account Opening [Parameterized Constructor]");
+            Console.WriteLine("17. Total Students Counter [Static]");
+            Console.WriteLine("18. Overdrawn Account Check [Read-Only Property]");
+            Console.WriteLine("19. Set Student Security PIN [Write-Only Property]");
+            Console.WriteLine("20. Exit");
+            Console.WriteLine("===============================================");
+            Console.Write("Choose an option: ");
+        }
+
+        static BankAccount ChooseAccount()
+        {
+            Console.Write("Choose account (1 = " + account1.HolderName + ", 2 = " + account2.HolderName + "): ");
+            string input = Console.ReadLine();
+            return input == "1" ? account1 : account2;
+        }
+
+        static Student ChooseStudent()
+        {
+            Console.Write("Choose student (1 = " + student1.Name + ", 2 = " + student2.Name + "): ");
+            string input = Console.ReadLine();
+            return input == "1" ? student1 : student2;
+        }
+
+        static Product ChooseProduct()
+        {
+            Console.Write("Choose product (1 = " + product1.ProductName + ", 2 = " + product2.ProductName + "): ");
+            string input = Console.ReadLine();
+            return input == "1" ? product1 : product2;
+        }
+
+        // Case methods will be added in the next commits
+        static void Case1_ViewAccountDetails() { }
+        static void Case2_UpdateStudentAddress() { }
+        static void Case3_MakeDeposit() { }
+        static void Case4_MakeWithdrawal() { }
+        static void Case5_ViewProductDetails() { }
+        static void Case6_RegisterStudent() { }
+        static void Case7_CompareBalances() { }
+        static void Case8_RestockAndCheck() { }
+        static void Case9_TransferBetweenAccounts() { }
+        static void Case10_UpdateGradeValidated() { }
+        static void Case11_StudentReportCard() { }
+        static void Case12_AccountHealthStatus() { }
+        static void Case13_BulkSaleWithRevenue() { }
+        static void Case14_ScholarshipEligibility() { }
+        static void Case15_FullBalanceTopUp() { }
+        static void Case16_QuickAccountOpening() { }
+        static void Case17_TotalStudentsCounter() { }
+        static void Case18_OverdrawnCheck() { }
+        static void Case19_SetStudentPin() { }
     }
 }
