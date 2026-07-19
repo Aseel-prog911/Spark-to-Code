@@ -78,7 +78,38 @@ namespace Hotel_Management_System
             Console.Write("Enter your choice: ");
         }
 
-        static void Case01_AddNewRoom() { }
+        static void Case01_AddNewRoom()
+        {
+            Console.Write("Enter room number: ");
+            if (!int.TryParse(Console.ReadLine(), out int roomNumber) || roomNumber <= 0)
+            {
+                Console.WriteLine("Invalid room number. Must be a positive number.");
+                return;
+            }
+
+            if (rooms.Any(r => r.roomNumber == roomNumber))
+            {
+                Console.WriteLine("Error: A room with this number already exists.");
+                return;
+            }
+
+            Console.Write("Enter room type (Single/Double/Suite): ");
+            string roomType = Console.ReadLine();
+
+            Console.Write("Enter price per night: ");
+            if (!double.TryParse(Console.ReadLine(), out double price) || price <= 0)
+            {
+                Console.WriteLine("Invalid price. Must be a positive number.");
+                return;
+            }
+
+            Room newRoom = new Room(roomNumber, roomType, price);
+            rooms.Add(newRoom);
+
+            Console.WriteLine("Room added successfully!");
+            Console.WriteLine($"Room {roomNumber} | Type: {roomType} | Price: {price:F2}");
+            Console.WriteLine($"Total rooms now: {rooms.Count}");
+        }
         static void Case02_RegisterNewGuest() { }
         static void Case03_BookRoom() { }
         static void Case04_ViewAllRooms() { }
