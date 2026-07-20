@@ -2,6 +2,7 @@
   <Folder Name="/Solution Items/">
     <File Path="DatabaseTasks/Airline_System_ERD.png" />
     <File Path="DatabaseTasks/College_Management_ERD_Circular.png" />
+    <File Path="DatabaseTasks/Company_System_ERD_Circular.png" />
   </Folder>
   <Project Path="Mini Compound Project/Mini Compound Project.csproj" />
   <Project Path="OOP Part 1/OOP Part 1.csproj" Id="6ea6516c-1052-4804-8646-cb2872114210" />
